@@ -3,9 +3,9 @@ import useSWR from "swr";
 import { useRouter } from 'next/router'
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
-export default function Login({ users }) {
+export default function Login() {
     const router = useRouter()
-    const { user, isLoading, isError } = getData()
+    const { user, isLoading, isError } = useGetData()
     if (isError) return <div>Error fetching data</div>
     if (isLoading) return <div>Loading...</div>
 
@@ -52,7 +52,7 @@ export default function Login({ users }) {
     )
 }
 
-function getData() {
+function useGetData() {
     const { data, error } = useSWR('http://localhost:3000/api/users', fetcher)
     return {
         user: data,
