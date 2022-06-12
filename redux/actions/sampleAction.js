@@ -1,4 +1,4 @@
-import { GET_SAMPLE, SAMPLE_ERROR } from "../constants";
+import { GET_SAMPLE, SAMPLE_ERROR } from "../constants/sampleContant";
 
 export const getSampleData = () => async (dispatch) => {
     try {

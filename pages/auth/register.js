@@ -1,20 +1,35 @@
-// import { fetcher } from '../../lib'
-import useSWR from "swr";
 import { useRouter } from 'next/router'
 import Seo from '@c/seo';
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+import { useDispatch, useSelector } from "react-redux";
+import { register } from "../../redux/actions/userAction";
+import { useEffect } from 'react';
 
 export default function Register() {
     const router = useRouter()
-    const { user, isLoading, isError } = useGetData()
-    if (isError) return <div>Error fetching data</div>
-    if (isLoading) return <div>Loading...</div>
-
+    const dispatch = useDispatch();
+    const userInfoData = useSelector((state) => state.userInfo);
+    const { userInfo } = userInfoData;
     const redirect = (e) => {
         e.preventDefault()
         router.push('/')
     }
+    const submitRegister = (e) => {
+        e.preventDefault();
+        dispatch(register({
+            name: 'osman',
+            email: 'osman@gmail.com',
+            password: '123456'
+        }));
+
+    }
+
+    useEffect(() => {
+        if (userInfo?.email) {
+            router.push('/')
+        }
+        console.log('user', userInfo);
+    }, [userInfo])
 
     return (
         <>
@@ -28,7 +43,7 @@ export default function Register() {
                             <label className="block mt-3 text-sm text-gray-700 text-center font-semibold">
                                 Log In
                             </label>
-                            <form onSubmit={(e) => redirect(e)} className="mt-10">
+                            <form onSubmit={(e) => submitRegister(e)} className="mt-10">
                                 <div>
                                     <input type="email" placeholder="Email" className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0" />
                                 </div>
@@ -55,13 +70,4 @@ export default function Register() {
             </div>
         </>
     )
-}
-
-function useGetData() {
-    const { data, error } = useSWR('http://localhost:3000/api/users', fetcher)
-    return {
-        user: data,
-        isLoading: !error && !data,
-        isError: error
-    }
 }
