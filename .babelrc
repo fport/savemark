@@ -1,0 +1,25 @@
+{
+    "presets": [
+        [
+            "next/babel",
+            {}
+        ]
+    ],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./"
+                ],
+                "alias": {
+                    "@c": "./components",
+                    "@uikit": "./common/uikit",
+                    "@utils": "./common/utils",
+                    "@lib": "./common/lib",
+                    "@r": "./redux"
+                }
+            }
+        ]
+    ]
+}
