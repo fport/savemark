@@ -53,7 +53,7 @@ export default function Login() {
 }
 
 function useGetData() {
-    const { data, error } = useSWR('http://localhost:3000/api/users', fetcher)
+    const { data, error } = useSWR(`http://${process.env.BACKEND_PORT}/api/users`, fetcher)
     return {
         user: data,
         isLoading: !error && !data,

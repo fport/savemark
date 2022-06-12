@@ -1,4 +1,4 @@
-import connectDB from '../../lib/db'
+import connectDB from '../../common/lib/db'
 import User from '../../models/userModels'
 
 connectDB().catch(err => console.log('ERROR: ', err))

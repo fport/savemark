@@ -1,4 +1,4 @@
-import connectDB from '../../lib/db'
+import connectDB from '../../common/lib/db'
 import Bookmark from '../../models/bookmarkModels'
 import User from '../../models/userModels'
 
