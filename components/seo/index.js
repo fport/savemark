@@ -34,6 +34,7 @@ export default function Seo({ title }) {
                 href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Inter:wght@400;600&display=swap"
                 rel="stylesheet"
             />
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&family=Inter:wght@400;600&display=swap" />
         </Head>
     );
 }
