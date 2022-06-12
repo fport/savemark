@@ -20,7 +20,8 @@ export default async function users(req, res) {
             const create = new User({
                 name: 'Osman Abi',
                 email: 'osman@gmail.com',
-                password: '123123'
+                password: '123123',
+                bookmarks: []
             })
             create.save().then(() => {
                 res.status(200).json(create)

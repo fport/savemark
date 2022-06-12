@@ -15,6 +15,9 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
     },
+    bookmarks: {
+        type: Array
+    },
     resetToken: { type: String },
     update: { type: String },
     validEmail: { type: String, default: "not" },
