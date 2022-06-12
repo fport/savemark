@@ -4,18 +4,36 @@ import { useRouter } from 'next/router'
 import Seo from '@c/seo';
 import Link from 'next/link'
 
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions/userAction";
+import { useEffect } from 'react';
+
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Login() {
     const router = useRouter()
+    const dispatch = useDispatch();
+    const userInfoData = useSelector((state) => state.userInfo);
+    const { userInfo } = userInfoData;
+
     const { user, isLoading, isError } = useGetData()
     if (isError) return <div>Error fetching data</div>
     if (isLoading) return <div>Loading...</div>
 
     const redirect = (e) => {
         e.preventDefault()
-        router.push('/')
+        dispatch(login({
+            email: 'osman@gmail.com',
+            password: '123456'
+        }));
     }
+
+    useEffect(() => {
+        if (userInfo?.email) {
+            router.push('/')
+        }
+        console.log('user', userInfo);
+    }, [userInfo])
 
     return (
         <>
