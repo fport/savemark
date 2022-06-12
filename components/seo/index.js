@@ -9,7 +9,7 @@ export default function Seo({ title }) {
                 name="viewport"
                 content="width=device-width, initial-scale=1, shrink-to-fit=no"
             />
-            <link rel="icon" href="/savemark.ico" />
+            <link rel="icon" href="/favicon.ico" />
             <title>{title} / Savemark</title>
             <meta name="description" content="Savemark" />
             <meta name="yandex-verification" content="6adff61af2926794" />
