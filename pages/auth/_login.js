@@ -1,3 +1,5 @@
+// import { fetcher } from '../../lib'
+// import useSWR from "swr";
 import { useRouter } from 'next/router'
 import Seo from '@c/seo';
 import Link from 'next/link'
@@ -6,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/userAction";
 import { useEffect } from 'react';
 
+// const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 export default function Login() {
     const router = useRouter()
@@ -13,8 +16,12 @@ export default function Login() {
     const userInfoData = useSelector((state) => state.userInfo);
     const { userInfo } = userInfoData;
 
+    // const { user, isLoading, isError } = useGetData()
+    // if (isError) return <div>Error fetching data</div>
+    // if (isLoading) return <div>Loading...</div>
+
     const redirect = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         dispatch(login({
             email: 'osman@gmail.com',
             password: '123456'
@@ -26,12 +33,7 @@ export default function Login() {
         if (userInfo?.email && router?.route == '/auth/login') {
             router.push('/auth/login')
         }
-
-        if (userInfo?.email) {
-            router.push('/')
-        }
-
-    }, [userInfo])
+    }, [])
 
     return (
         <>
@@ -45,7 +47,7 @@ export default function Login() {
                             <label className="block mt-3 text-sm text-gray-700 text-center font-semibold">
                                 Log In
                             </label>
-                            <form onSubmit={(e) => redirect(e)} className="mt-10">
+                            <form onSubmit={() => redirect()} className="mt-10">
                                 <div>
                                     <input type="email" placeholder="Email" className="mt-1 block w-full border-none bg-gray-100 h-11 rounded-xl shadow-lg hover:bg-blue-100 focus:bg-blue-100 focus:ring-0" />
                                 </div>
@@ -75,3 +77,12 @@ export default function Login() {
         </>
     )
 }
+
+// function useGetData() {
+//     const { data, error } = useSWR(`/api/users`, fetcher)
+//     return {
+//         user: data,
+//         isLoading: !error && !data,
+//         isError: error
+//     }
+// }

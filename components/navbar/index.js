@@ -1,6 +1,15 @@
 import Link from 'next/link'
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/actions/userAction";
 
 export default function Navbar() {
+    const dispatch = useDispatch();
+
+    const redirect = (e) => {
+        e.preventDefault()
+        dispatch(logout());
+    }
+
     return (
         <header className="text-white h-12 py-4 h-auto">
             <div style={{ width: '275px' }}>
@@ -54,7 +63,7 @@ export default function Navbar() {
                                     </label>
                                     <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                                         <li><Link href='/profile/1232-4124-4123'><a>Profile</a></Link></li>
-                                        <li><Link href='/auth/login'><a>Log out</a></Link></li>
+                                        <li><a onClick={(e) => redirect(e)}>Log out</a></li>
                                     </ul>
                                 </div>
                             </div>

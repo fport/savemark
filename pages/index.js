@@ -10,23 +10,18 @@ import { useEffect } from "react";
 export default function Home() {
   const router = useRouter()
   const dispatch = useDispatch();
-  const sampleListData = useSelector((state) => state.sampleData);
   const userInfoData = useSelector((state) => state.userInfo);
-  const { sample } = sampleListData;
-  const { userInfo } = userInfoData;
+  const { userInfo, loading } = userInfoData;
 
   useEffect(() => {
     dispatch(getSampleData());
   }, [dispatch]);
 
   useEffect(() => {
-    if (userInfo?.email) {
-      router.push('/')
-    } else {
+    if (!userInfo?.email && !loading) {
       router.push('/auth/login')
     }
-
-  }, [userInfo])
+  }, [userInfoData])
 
   return (
     <Layout>

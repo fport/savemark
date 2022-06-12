@@ -28,7 +28,6 @@ export default function Register() {
         if (userInfo?.email) {
             router.push('/')
         }
-        console.log('user', userInfo);
     }, [userInfo])
 
     return (
