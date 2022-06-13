@@ -10,8 +10,14 @@ export default async function users(req, res) {
     switch (method) {
         case "GET":
             try {
-                const data = await User.findOne({ email: 'osman@gmail.com' })
-                res.status(200).json(data.bookmarks)
+                const data = await User.find({}).select({ "bookmarks": 1, "_id": 0 })
+                    .then((bm) => {
+                        res.status(200).json(bm)
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        res.status(500).json({ success: false, error });
+                    })
             } catch (error) {
                 console.log(error);
                 res.status(500).json({ success: false, error });
