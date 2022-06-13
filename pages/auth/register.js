@@ -54,14 +54,6 @@ export default function Register() {
                                         Register
                                     </button>
                                 </div>
-                                <div className="mt-7">
-                                    <div className="flex justify-center items-center">
-                                        <label className="mr-2">Do not you have an account yet?</label>
-                                        <a className=" text-blue-500 transition duration-500 ease-in-out  transform hover:-translate-x hover:scale-105">
-                                            Sign Up
-                                        </a>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                     </div>
